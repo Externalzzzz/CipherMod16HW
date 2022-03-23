@@ -1,0 +1,76 @@
+﻿<Application x:Class="CipherMod16.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CipherMod16"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <LinearGradientBrush x:Key="GreenBlueGardientBrush"  
+                            StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF22EAEA" Offset="0"/>
+            <GradientStop Color="#FF0DA9BD" Offset="0.5"/>
+            <GradientStop Color="Cyan" Offset="1"/>
+
+        </LinearGradientBrush>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource GreenBlueGardientBrush}"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Margin" Value="10"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="outerRectangle"    
+                                       HorizontalAlignment="Stretch"    
+                                       VerticalAlignment="Stretch"    
+                                       Stroke="{TemplateBinding Background}"    
+                                       RadiusX="30" RadiusY="30" StrokeThickness="2"    
+                                       Fill="Transparent" />
+                            <Rectangle x:Name="innerRectangle"    
+                                        HorizontalAlignment="Stretch"    
+                                        VerticalAlignment="Stretch" Stroke="Transparent"    
+                                        StrokeThickness="10"    
+                                        Fill="{TemplateBinding Background}"    
+                                        RadiusX="30" RadiusY="30"   />
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Margin="20"    
+                                        Content="{TemplateBinding  Content}"    
+                                        TextBlock.Foreground="Black" 
+                                        TextBlock.TextAlignment="Center"
+                                                  
+                                                  />
+                            </DockPanel>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property ="Rectangle.Stroke" TargetName="outerRectangle"  
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+
+                                <Setter Property="Rectangle.Opacity" Value="1" TargetName="innerRectangle" />
+                                <Setter Property="ContentPresenter.BitmapEffect"       TargetName="myContentPresenter">
+                                    <Setter.Value>
+                                        <BlurBitmapEffect Radius="1" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+        <Style x:Key="RedStyle" TargetType="{x:Type Control}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Courier New" />
+            <Setter Property="FontStyle" Value="Normal" />
+        </Style>
+    </Application.Resources>
+    
+</Application>
